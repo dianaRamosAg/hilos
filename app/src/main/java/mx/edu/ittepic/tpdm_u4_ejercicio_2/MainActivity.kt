@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     var etiqueta:TextView?=null
     var ytint=0
     var vhint=0
-    private var hilo=Hilo(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,14 +27,13 @@ class MainActivity : AppCompatActivity() {
 
 
         bciclo?.setOnClickListener {
-            hilo.stop()
-        /*    (0..100000).forEach{
+            (0..100000).forEach{
                 etiqueta?.setText("Valor :"+it)
-            }*/
+            }
         }
 
         btimer?.setOnClickListener{
-    /*
+
             var timer=object:CountDownTimer(2000,20)
             {
                 override fun onFinish() {
@@ -46,45 +44,37 @@ class MainActivity : AppCompatActivity() {
                     etiqueta?.setText("Valor :"+ytint++)
                 }
 
-            }.start()*/
-            hilo.resume()
+            }.start()
         }
 
         bhilo?.setOnClickListener{
-
+            var hilo=Hilo(this)
             hilo.start()
-          //  hilo.resume()
                 }
 
 
 
 
 
-
     }
 }
 
 
 
 
+    private class Hilo(p:MainActivity):Thread() {
+        var puntero = p
 
-private class Hilo(p:MainActivity):Thread(){
+        override fun run() {
+            super.run()
+            while (true) {
+                sleep(200)
+                puntero.runOnUiThread {
+                    //aqui se puede ejecutar para el mainactivity
+                    puntero.setTitle("Valor : " + puntero.vhint++)
+                }
 
-    var puntero=p
-
-    override fun run() {
-        super.run()
-        while(true) {
-            sleep(200)
-            puntero.runOnUiThread {
-                //aqui se puede ejecutar para el mainactivity
-                puntero.setTitle("Valor : "+puntero.vhint++)
             }
-
         }
-
     }
 
-
-
-}

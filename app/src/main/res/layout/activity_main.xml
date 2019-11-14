@@ -17,17 +17,17 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Iniciar"
+        android:text="Hilo"
         android:id="@+id/hilo"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reiniciar"
+        android:text="Timer"
         android:id="@+id/timer"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Parar"
+        android:text="Ciclo"
         android:id="@+id/ciclo"/>
 
     <TextView
